@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>code-kafka</module>
-        <module>code-kafka-springboot</module>
     </modules>
 
     <properties>

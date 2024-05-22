@@ -50,7 +50,7 @@ public class KafkaProducerTest {
     public void withCallback() {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         for (int i = 0; i < 20; i++) {
-            producer.send(new ProducerRecord<>("producer_test", "withCallback value:" + i),
+            producer.send(new ProducerRecord<>("topic_2", 0, null, "message withCallback value:" + i),
                     (metadata, exception) -> {  //回调函数
                         if (null == exception) {
                             System.out.println("消息数据发送成功 ->" + metadata.offset());
@@ -68,7 +68,7 @@ public class KafkaProducerTest {
     public void syncSend() throws ExecutionException, InterruptedException {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         RecordMetadata metadata = producer.send(new ProducerRecord<>(
-                        "producer_test",
+                        "topic_1",
                         "syncSend value" ))
                 .get();
         if(metadata != null && metadata.hasOffset()){
