@@ -28,6 +28,8 @@ public class MyConsumer {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // 关闭自动提交
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "20"); // 一次拉取最大记录数，默认 500
+        props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "10000"); // 一次处理数据时间周期
         /*
             Kafka 默认的消费组重置策略 (auto.offset.reset) 是 "latest"。这意味着，
             当消费者组在某个分区中没有已提交的偏移量时，它会从最新的偏移量开始消费数据，
